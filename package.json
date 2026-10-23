@@ -1,0 +1,60 @@
+{
+  "author": "Vex",
+  "bin": {
+    "pantun": "./dist/cjs/src/cli.js"
+  },
+  "description": "Validator & generator pantun Bahasa Indonesia — cek rima a-b-a-b, hitung suku kata, dan buatkan sampiran yang rimanya nyambung dengan isimu. Zero dependency.",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/index.js",
+      "require": "./dist/cjs/src/index.js",
+      "types": "./dist/esm/src/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/junanda24/daily-pantun#readme",
+  "keywords": [
+    "pantun",
+    "indonesia",
+    "bahasa-indonesia",
+    "rima",
+    "suku-kata",
+    "puisi",
+    "validator",
+    "generator",
+    "zero-dependency",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "./dist/cjs/src/index.js",
+  "module": "./dist/esm/src/index.js",
+  "name": "pantun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junanda24/daily-pantun.git"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node -e \"require('fs').writeFileSync('dist/esm/package.json', JSON.stringify({ type: 'module' }))\"",
+    "clean": "rm -rf dist",
+    "pack:dry": "npm run build && npm pack --dry-run",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build && node --test \"dist/esm/test/*.test.js\""
+  },
+  "type": "commonjs",
+  "types": "./dist/esm/src/index.d.ts",
+  "version": "1.0.0"
+}
